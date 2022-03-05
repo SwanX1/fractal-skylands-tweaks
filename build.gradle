@@ -94,7 +94,8 @@ jar {
       'Specification-Version' : '1',
       'Implementation-Title'  : config.TITLE,
       'Implementation-Version': config.VERSION,
-      'Implementation-Vendor' : config.AUTHOR
+      'Implementation-Vendor' : config.AUTHOR,
+      'MixinConfigs'          : "${config.ARTIFACT}.mixins.json",
     ])
   }
 }
