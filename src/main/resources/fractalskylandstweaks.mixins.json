@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.cernavskis.fractalskylandstweaks.mixin",
+  "refmap": "fractalskylandstweaks.refmap.json",
+  "compatibilityLevel": "JAVA_8",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+  ],
+  "client": [
+    "client.MixinCreateWorldScreen",
+    "client.MixinMainMenuScreen",
+    "client.MixinServerWorldInfo",
+    "client.MixinWorldOptionsScreen"
+  ]
+}

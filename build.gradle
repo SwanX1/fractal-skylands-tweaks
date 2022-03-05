@@ -1,18 +1,18 @@
 buildscript {
   repositories {
     maven { url = 'https://maven.minecraftforge.net' }
-    // maven { url = 'https://repo.spongepowered.org/maven' }
+    maven { url = 'https://repo.spongepowered.org/maven' }
     mavenCentral()
   }
 
   dependencies {
     classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-    // classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
+    classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
   }
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
-// apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'org.spongepowered.mixin'
 
 // This initializes the config. Please try to modify the variables in the config file, if needed, add more if you see a reason to.
 ext.config = parseConfig(file('build.properties'))
@@ -31,6 +31,7 @@ minecraft {
   runs {
     client {
       workingDirectory project.file('run')
+      arg "-mixin.config=${config.ARTIFACT}.mixins.json"
       property 'forge.logging.markers', 'REGISTRIES'
       property 'forge.logging.console.level', 'debug'
       mods {
@@ -42,6 +43,7 @@ minecraft {
 
     server {
       workingDirectory project.file('run')
+      arg "-mixin.config=${config.ARTIFACT}.mixins.json"
       property 'forge.logging.markers', 'REGISTRIES'
       property 'forge.logging.console.level', 'debug'
       mods {
@@ -81,7 +83,7 @@ dependencies {
   // implementation fg.deobf("curse.maven:tetra-289712:${config.TETRA_FILE}")
   // implementation fg.deobf("curse.maven:mutil-351914:${config.MUTIL_FILE}")
   implementation "com.google.code.gson:gson:2.8.0" // Minecraft already has this, but I'm declaring it just to declare that this project uses it.
-  // annotationProcessor "org.spongepowered:mixin:${config.MIXIN_VERSION}:processor"
+  annotationProcessor "org.spongepowered:mixin:${config.MIXIN_VERSION}:processor"
 }
 
 jar {
@@ -99,9 +101,9 @@ jar {
 
 jar.finalizedBy('reobfJar')
 
-// mixin {
-
-// }
+mixin {
+  add sourceSets.main, "${config.ARTIFACT}.refmap.json"
+}
 
 // Config parse function
 def parseConfig(File config) {
