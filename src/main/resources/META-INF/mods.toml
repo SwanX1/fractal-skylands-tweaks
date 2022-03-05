@@ -1,0 +1,41 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/SwanX1/fractal-skylands-tweaks/issues"
+
+[[mods]]
+  modId="fractalskylandstweaks"
+  version="${file.jarVersion}"
+  displayName="Fractal Skylands Tweaks"
+  # See: https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
+  updateJSONURL="https://cernavskis.dev/api/fractalskylandstweaks.json"
+  displayURL="https://github.com/SwanX1/fractal-skylands-tweaks"
+  #logoFile="examplemod.png"
+  credits="SwanX1"
+  authors="SwanX1"
+  description='''
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  An potest, inquit ille, quicquam esse suavius quam nihil dolere? Nulla erit controversia.
+  Inquit, dasne adolescenti veniam? Sed quid attinet de rebus tam apertis plura requirere? 
+  '''
+
+[[dependencies.fractalskylandstweaks]]
+  modId="forge"
+  mandatory=true
+  versionRange="[36.2.20,)"
+  ordering="NONE"
+  side="BOTH"
+
+[[dependencies.fractalskylandstweaks]]
+  modId="minecraft"
+  mandatory=true
+  versionRange="[1.16.5,1.17)"
+  ordering="NONE"
+  side="BOTH"
+
+# [[dependencies.fractalskylandstweaks]]
+#   modId="tetra"
+#   mandatory=true
+#   versionRange="[3.20.0,)"
+#   ordering="NONE"
+#   side="BOTH"
