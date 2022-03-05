@@ -22,6 +22,6 @@ public class FractalSkylandsTweaks {
     LOGGER.info("Registering events...");
     MinecraftForge.EVENT_BUS.register(new ForgeEvents());
     FMLJavaModLoadingContext.get().getModEventBus().register(new ModEvents());
-    
+
   }
 }

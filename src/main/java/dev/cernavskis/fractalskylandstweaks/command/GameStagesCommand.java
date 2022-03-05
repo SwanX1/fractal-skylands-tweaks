@@ -22,7 +22,7 @@ public class GameStagesCommand implements ICommand {
         Commands.argument("player", EntityArgument.player())
           .then(
             Commands.literal("get")
-              .executes(context -> 
+              .executes(context ->
                 executeGet(
                   context,
                   EntityArgument.getPlayer(context, "player")
@@ -33,7 +33,7 @@ public class GameStagesCommand implements ICommand {
             Commands.literal("add")
               .then(
                 Commands.argument("stage", StringArgumentType.word())
-                  .executes(context -> 
+                  .executes(context ->
                     executeAdd(
                       context,
                       EntityArgument.getPlayer(context, "player"),
@@ -46,7 +46,7 @@ public class GameStagesCommand implements ICommand {
             Commands.literal("remove")
               .then(
                 Commands.argument("stage", StringArgumentType.word())
-                  .executes(context -> 
+                  .executes(context ->
                     executeRemove(
                       context,
                       EntityArgument.getPlayer(context, "player"),
@@ -71,10 +71,10 @@ public class GameStagesCommand implements ICommand {
         source.sendSuccess(new StringTextComponent(" - " + stage), false);
       }
     }
-    
+
     return 1;
   }
-  
+
   private int executeAdd(CommandContext<CommandSource> context, ServerPlayerEntity player, String string) {
     UUID uuid = player.getUUID();
     CommandSource source = context.getSource();

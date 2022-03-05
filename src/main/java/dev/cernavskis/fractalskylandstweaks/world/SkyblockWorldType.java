@@ -67,7 +67,7 @@ public class SkyblockWorldType extends ForgeWorldType {
     return new DimensionGeneratorSettings(
       seed,
       generateStructures,
-      generateLoot, 
+      generateLoot,
       getDefaultSimpleRegistry(
         dynamicRegistries.registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY),
         dynamicRegistries.registryOrThrow(Registry.BIOME_REGISTRY),

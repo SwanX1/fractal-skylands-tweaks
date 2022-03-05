@@ -35,7 +35,7 @@ public class GameStages {
   private Map<UUID, List<String>> playerStages;
   private Path dataDirectory;
   private boolean shouldSave;
-  
+
   public void setServer(MinecraftServer server) {
     this.server = server;
   }
@@ -59,7 +59,7 @@ public class GameStages {
       throw new IllegalStateException("Server is not set");
     }
     playerStages = new ConcurrentHashMap<>();
-    
+
     dataDirectory = server.getWorldPath(new FolderName("data"));
 
     try {
@@ -74,7 +74,7 @@ public class GameStages {
       if (Files.notExists(dataFile)) {
         System.out.println("Skyblock game stage data file not found, creating one.");
         Files.createFile(dataFile);
-        Files.writeString(dataFile, "{}");
+        Files.write(dataFile, "{}".getBytes());
       }
 
       JsonObject jsondata;
@@ -144,7 +144,7 @@ public class GameStages {
     }
     return true;
   }
-  
+
   public String[] getStages(UUID player) {
     if (!assertIsLoaded()) {
       return null;

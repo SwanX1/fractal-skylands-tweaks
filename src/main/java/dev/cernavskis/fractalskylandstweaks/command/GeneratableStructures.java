@@ -40,7 +40,7 @@ public class GeneratableStructures {
   private static final Logger LOGGER = LogManager.getLogger();
   public static final Map<String, IStructure<?>> STRUCTURES = new ConcurrentHashMap<>();
   private static String[] STRUCTURE_NAMES = new String[0];
-  
+
   static {
     registerStructure("start_island", new INoConfigStructure() {
       @Override
@@ -93,7 +93,7 @@ public class GeneratableStructures {
         );
         return true;
       }
-      
+
       @Override
       public CompoundNBT getDefaultConfig() {
         CompoundNBT defaultConfig = new CompoundNBT();
@@ -287,7 +287,7 @@ public class GeneratableStructures {
         } else {
           islandConfig.radius = defaultConfig.getDouble("radius");
         }
-        
+
         return islandConfig;
       }
     });

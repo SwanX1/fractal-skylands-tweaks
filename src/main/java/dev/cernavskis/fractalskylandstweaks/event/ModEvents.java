@@ -17,7 +17,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 public class ModEvents {
   private static final Logger LOGGER = LogManager.getLogger();
-  
+
   @SubscribeEvent
   public void onRegisterWorldTypes(RegistryEvent.Register<ForgeWorldType> event) {
     LOGGER.info("Registering world types...");

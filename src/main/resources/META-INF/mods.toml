@@ -14,9 +14,8 @@ issueTrackerURL="https://github.com/SwanX1/fractal-skylands-tweaks/issues"
   credits="SwanX1"
   authors="SwanX1"
   description='''
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  An potest, inquit ille, quicquam esse suavius quam nihil dolere? Nulla erit controversia.
-  Inquit, dasne adolescenti veniam? Sed quid attinet de rebus tam apertis plura requirere? 
+  Fractal Skylands Tweaks is a mod that adds features and tweaks to the Fractal Skylands modpack.
+  Read more: https://github.com/SwanX1/fractal-skylands-tweaks/wiki
   '''
 
 [[dependencies.fractalskylandstweaks]]

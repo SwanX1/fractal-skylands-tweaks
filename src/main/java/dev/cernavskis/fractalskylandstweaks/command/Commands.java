@@ -12,7 +12,7 @@ public class Commands {
   private static final List<ICommand> commands = new ArrayList<>(1);
 
   public static final ICommand SKYBLOCK = register(new SkyblockCommand());
-  
+
 
   private static ICommand register(ICommand command) {
     commands.add(command);

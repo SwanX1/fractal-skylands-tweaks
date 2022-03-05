@@ -67,5 +67,5 @@ public class IslandChunkGenerator extends ChunkGenerator {
   public IBlockReader getBaseColumn(int p_230348_1_, int p_230348_2_) {
     return new Blockreader(new BlockState[0]);
   }
-  
+
 }

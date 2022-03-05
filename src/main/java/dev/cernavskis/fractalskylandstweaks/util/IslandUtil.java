@@ -10,7 +10,7 @@ import net.minecraft.world.IWorldWriter;
 public class IslandUtil {
   /**
    * Generates an island at the given position.
-   * 
+   *
    * @param world The world to generate the island in.
    * @param random The random to use for generation.
    * @param position The position to generate the island at.
@@ -41,7 +41,7 @@ public class IslandUtil {
 
         double noise = OpenSimplex2F.noise2(baseSeed, x * baseSettings.noiseScale, z * baseSettings.noiseScale);
         double depth = (Math.abs(noise - baseNoisePeak) * (radius - distance) + (radius - distance)) * baseSettings.depthMultiplier;
-        
+
         for (int y = -(int) depth; y < 0; y++) {
           BlockPos pos = new BlockPos(x, y, z);
           BlockState blockState = baseSettings.blockStateSupplier.apply(depth, radius, pos, baseBlockStateSeed);
@@ -51,7 +51,7 @@ public class IslandUtil {
         }
       }
     }
-    
+
     long surfaceSeed = random.nextLong();
     double surfaceNoisePeak = 0;
     for (int x = -(int) (radius / (surfaceSettings.noiseScale * 8)); x < radius / (surfaceSettings.noiseScale * 8); x++) {
@@ -73,7 +73,7 @@ public class IslandUtil {
 
         double noise = OpenSimplex2F.noise2(surfaceSeed, x * surfaceSettings.noiseScale, z * surfaceSettings.noiseScale);
         double height = (Math.abs(noise - surfaceNoisePeak) * (radius - distance) + (radius - distance)) * surfaceSettings.depthMultiplier;
-        
+
         for (int y = 0; y <= height; y++) {
           BlockPos pos = new BlockPos(x, y, z);
           BlockState blockState = surfaceSettings.blockStateSupplier.apply(height, radius, pos, surfaceBlockStateSeed);
