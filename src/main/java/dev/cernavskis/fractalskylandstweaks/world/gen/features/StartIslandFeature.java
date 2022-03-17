@@ -65,6 +65,6 @@ public class StartIslandFeature extends Feature<NoFeatureConfig> {
   }
 
   private static BlockState getSurfaceBlock(double altitude, double radius, BlockPos relativePosition, long seed) {
-    return Blocks.GRASS_BLOCK.defaultBlockState();
+    return altitude - relativePosition.getY() < 0.5 ? Blocks.GRASS_BLOCK.defaultBlockState() : Blocks.DIRT.defaultBlockState();
   }
 }

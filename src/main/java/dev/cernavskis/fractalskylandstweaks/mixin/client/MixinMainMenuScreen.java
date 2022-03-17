@@ -13,7 +13,16 @@ public class MixinMainMenuScreen {
   @Unique
   private boolean allowsMultiplayer;
 
-  @ModifyVariable(method = "createNormalMenuOptions", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/Screen;addButton(Lnet/minecraft/client/gui/widget/Widget;)Lnet/minecraft/client/gui/widget/Widget;", ordinal = 2, shift = Shift.BEFORE), ordinal = 0)
+  @ModifyVariable(
+    method = "createNormalMenuOptions",
+    at = @At(
+      value = "INVOKE",
+      target = "Lnet/minecraft/client/gui/screen/MainMenuScreen;addButton(Lnet/minecraft/client/gui/widget/Widget;)Lnet/minecraft/client/gui/widget/Widget;",
+      ordinal = 2,
+      shift = Shift.BEFORE
+    ),
+    ordinal = 0
+  )
   private boolean setFlag(boolean in) {
     this.allowsMultiplayer = in;
     return false;

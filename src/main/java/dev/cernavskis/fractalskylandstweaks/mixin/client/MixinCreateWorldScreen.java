@@ -13,7 +13,7 @@ public class MixinCreateWorldScreen {
     method = "init",
     at = @At(
       value = "INVOKE",
-      target = "Lnet/minecraft/client/gui/screen/Screen;addButton(Lnet/minecraft/client/gui/widget/Widget;)Lnet/minecraft/client/gui/widget/Widget;",
+      target = "Lnet/minecraft/client/gui/screen/CreateWorldScreen;addButton(Lnet/minecraft/client/gui/widget/Widget;)Lnet/minecraft/client/gui/widget/Widget;",
       ordinal = 5
     ),
     index = 0

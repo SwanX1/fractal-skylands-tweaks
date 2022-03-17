@@ -14,7 +14,7 @@ public class MixinWorldOptionsScreen {
   @Shadow
   private DimensionGeneratorSettings settings;
 
-  @Inject(method = "<init>", at = @At(value = "RETURN"))
+  @Inject(method = "<init>", at = @At("RETURN"))
   private void toggleFeaturesOff(CallbackInfo ci) {
     if (this.settings.generateFeatures()) {
       this.settings = this.settings.withFeaturesToggled();

@@ -12,7 +12,11 @@ import net.minecraft.world.storage.ServerWorldInfo;
 @Mixin(ServerWorldInfo.class)
 public class MixinServerWorldInfo {
 
-  @Inject(method = "getLifecycle", at = @At("HEAD"), cancellable = true)
+  @Inject(
+    method = "worldGenSettingsLifecycle()Lcom/mojang/serialization/Lifecycle;",
+    at = @At("HEAD"),
+    cancellable = true
+  )
   private void forceStableLifeCycle(CallbackInfoReturnable<Lifecycle> ci) {
     ci.setReturnValue(Lifecycle.stable());
   }
