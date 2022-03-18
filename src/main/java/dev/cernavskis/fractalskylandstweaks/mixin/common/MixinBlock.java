@@ -1,3 +1,4 @@
+// Copyright (c) 2022 Kārlis Čerņavskis, All Rights Reserved.
 package dev.cernavskis.fractalskylandstweaks.mixin.common;
 
 import net.minecraft.block.Block;
