@@ -52,7 +52,7 @@ public class GenerateCommand implements ICommand {
 
     if (!structure.isValidConfig(config)) {
       source.sendFailure(new StringTextComponent("Invalid config:"));
-      source.sendFailure(config.getPrettyDisplay("", 1));
+      source.sendFailure(config.getPrettyDisplay(" ", 1));
       return 0;
     }
 

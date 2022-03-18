@@ -19,6 +19,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import dev.cernavskis.fractalskylandstweaks.util.IslandBaseSettings;
+import dev.cernavskis.fractalskylandstweaks.util.IslandShapeSettings;
 import dev.cernavskis.fractalskylandstweaks.util.IslandSurfaceSettings;
 import dev.cernavskis.fractalskylandstweaks.util.IslandUtil;
 import dev.cernavskis.fractalskylandstweaks.world.gen.SBConfiguredFeatures;
@@ -56,7 +57,11 @@ public class GeneratableStructures {
           world,
           random,
           pos,
-          config.radius,
+          new IslandShapeSettings(
+            config.radius,
+            config.shapeNoiseScale,
+            config.shapeNoiseMultiplier
+          ),
           new IslandBaseSettings(
             config.baseNoiseScale,
             config.baseDepthMultiplier,
@@ -74,7 +79,7 @@ public class GeneratableStructures {
           ),
           new IslandSurfaceSettings(
             config.surfaceNoiseScale,
-            config.surfaceDepthMultiplier,
+            config.surfaceHeightMultiplier,
             (totalHeight, radius, relativePosition, seed) -> {
               BlockState[] blocks = config.surfaceBlocks;
               if (blocks.length == 0) {
@@ -110,10 +115,14 @@ public class GeneratableStructures {
         surface.put("blocks", surfaceBlocks);
         surface.putBoolean("blocksAreRandom", false);
         surface.putDouble("noiseScale", 1);
-        surface.putDouble("depthMultiplier", 0);
+        surface.putDouble("heightMultiplier", 0);
+        CompoundNBT shape = new CompoundNBT();
+        shape.putDouble("radius", 8);
+        shape.putDouble("noiseScale", 0.2);
+        shape.putDouble("noiseMultiplier", 0.7);
+        defaultConfig.put("shape", shape);
         defaultConfig.put("base", base);
         defaultConfig.put("surface", surface);
-        defaultConfig.putDouble("radius", 8);
         return defaultConfig;
       }
 
@@ -183,7 +192,7 @@ public class GeneratableStructures {
           if (surface.contains("noiseScale") && !surface.contains("noiseScale", 6)) {
             return false;
           }
-          if (surface.contains("depthMultiplier") && !surface.contains("depthMultiplier", 6)) {
+          if (surface.contains("heightMultiplier") && !surface.contains("heightMultiplier", 6)) {
             return false;
           }
           if (surface.contains("blocksAreRandom") && !surface.contains("blocksAreRandom", 1)) {
@@ -191,8 +200,20 @@ public class GeneratableStructures {
           }
         }
 
-        if (config.contains("radius") && !config.contains("radius", 6)) {
-          return false;
+        if (config.contains("shape")) {
+          if (!config.contains("shape", 10)) {
+            return false;
+          }
+          CompoundNBT shape = config.getCompound("shape");
+          if (shape.contains("radius") && !shape.contains("radius", 6)) {
+            return false;
+          }
+          if (shape.contains("noiseScale") && !shape.contains("noiseScale", 6)) {
+            return false;
+          }
+          if (shape.contains("noiseMultiplier") && !shape.contains("noiseMultiplier", 6)) {
+            return false;
+          }
         }
 
         return true;
@@ -269,10 +290,10 @@ public class GeneratableStructures {
           islandConfig.surfaceNoiseScale = defaultConfig.getCompound("surface").getDouble("noiseScale");
         }
 
-        if (surface.contains("depthMultiplier")) {
-          islandConfig.surfaceDepthMultiplier = surface.getDouble("depthMultiplier");
+        if (surface.contains("heightMultiplier")) {
+          islandConfig.surfaceHeightMultiplier = surface.getDouble("heightMultiplier");
         } else {
-          islandConfig.surfaceDepthMultiplier = defaultConfig.getCompound("surface").getDouble("depthMultiplier");
+          islandConfig.surfaceHeightMultiplier = defaultConfig.getCompound("surface").getDouble("heightMultiplier");
         }
 
         if (surface.contains("blocksAreRandom")) {
@@ -281,23 +302,34 @@ public class GeneratableStructures {
           islandConfig.surfaceBlocksAreRandom = defaultConfig.getCompound("surface").getBoolean("blocksAreRandom");
         }
 
-
-        if (config.contains("radius")) {
-          islandConfig.radius = config.getDouble("radius");
+        CompoundNBT shape;
+        if (config.contains("shape")) {
+          shape = config.getCompound("shape");
         } else {
-          islandConfig.radius = defaultConfig.getDouble("radius");
+          shape = defaultConfig.getCompound("shape");
+        }
+
+        if (shape.contains("radius")) {
+          islandConfig.radius = shape.getDouble("radius");
+        } else {
+          islandConfig.radius = defaultConfig.getCompound("shape").getDouble("radius");
+        }
+
+        if (shape.contains("noiseScale")) {
+          islandConfig.shapeNoiseScale = shape.getDouble("noiseScale");
+        } else {
+          islandConfig.shapeNoiseScale = defaultConfig.getCompound("shape").getDouble("noiseScale");
+        }
+
+        if (shape.contains("noiseMultiplier")) {
+          islandConfig.shapeNoiseMultiplier = shape.getDouble("noiseMultiplier");
+        } else {
+          islandConfig.shapeNoiseMultiplier = defaultConfig.getCompound("shape").getDouble("noiseMultiplier");
         }
 
         return islandConfig;
       }
     });
-
-    // registerStructure("test_feature", new INoConfigStructure() {
-    //   @Override
-    //   public boolean place(ISeedReader world, ChunkGenerator generator, Random random, BlockPos pos, Object config) {
-    //     return SBConfiguredFeatures.TEST_FEATURE.place(world, generator, random, pos);
-    //   }
-    // });
   }
 
   public static void registerStructure(String name, IStructure<?> structure) {
@@ -350,10 +382,12 @@ public class GeneratableStructures {
     public BlockState[] baseBlocks;
     public boolean baseBlocksAreRandom;
     public double surfaceNoiseScale;
-    public double surfaceDepthMultiplier;
+    public double surfaceHeightMultiplier;
     public BlockState[] surfaceBlocks;
     public boolean surfaceBlocksAreRandom;
     public double radius;
+    public double shapeNoiseScale;
+    public double shapeNoiseMultiplier;
   }
 
   public static IStructure<?> getStructure(String structureName) {

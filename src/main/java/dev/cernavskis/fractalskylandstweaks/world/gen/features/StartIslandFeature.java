@@ -6,6 +6,7 @@ import java.util.Random;
 import com.mojang.serialization.Codec;
 
 import dev.cernavskis.fractalskylandstweaks.util.IslandBaseSettings;
+import dev.cernavskis.fractalskylandstweaks.util.IslandShapeSettings;
 import dev.cernavskis.fractalskylandstweaks.util.IslandSurfaceSettings;
 import dev.cernavskis.fractalskylandstweaks.util.IslandUtil;
 import dev.cernavskis.fractalskylandstweaks.util.OpenSimplex2F;
@@ -24,12 +25,12 @@ public class StartIslandFeature extends Feature<NoFeatureConfig> {
   }
 
   public boolean place(ISeedReader world, ChunkGenerator generator, Random random, BlockPos position, NoFeatureConfig config) {
-    double radius = 7.5 + random.nextDouble();
+    double radius = 12 + (random.nextDouble() * 4);
     IslandUtil.generateBasicIsland(
       world,
       random,
       position,
-      radius,
+      new IslandShapeSettings(radius, 0.0625, 0.5),
       new IslandBaseSettings(0.0625, 0.9, StartIslandFeature::getBaseBlock),
       new IslandSurfaceSettings(1, 0, StartIslandFeature::getSurfaceBlock)
     );
