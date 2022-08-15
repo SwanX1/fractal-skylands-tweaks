@@ -4,7 +4,7 @@ package dev.cernavskis.fractalskylandstweaks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import dev.cernavskis.fractalskylandstweaks.data.GameStages;
+import dev.cernavskis.fractalskylandstweaks.data.stages.GameStages;
 import dev.cernavskis.fractalskylandstweaks.event.ForgeEvents;
 import dev.cernavskis.fractalskylandstweaks.event.ModEvents;
 import net.minecraftforge.common.MinecraftForge;

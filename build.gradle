@@ -21,6 +21,7 @@ version = config.VERSION
 group = "${config.GROUP}.${config.ARTIFACT}"
 archivesBaseName = "${config.ARCHIVES_BASE_NAME}-${config.MINECRAFT_VERSION}"
 
+compileJava.options.encoding = "UTF-8"
 java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
 minecraft {
@@ -70,18 +71,21 @@ minecraft {
 // sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-  // maven {
-  //   url "https://www.cursemaven.com"
-  //   content {
-  //     includeGroup "curse.maven"
-  //   }
-  // }
+  maven {
+    url "https://www.cursemaven.com"
+    content {
+      includeGroup "curse.maven"
+    }
+  }
 }
 
 dependencies {
   minecraft "net.minecraftforge:forge:${config.MINECRAFT_VERSION}-${config.FORGE_VERSION}"
-  // implementation fg.deobf("curse.maven:tetra-289712:${config.TETRA_FILE}")
-  // implementation fg.deobf("curse.maven:mutil-351914:${config.MUTIL_FILE}")
+  implementation fg.deobf("curse.maven:create-328085:${config.CREATE_FILE}")
+  implementation fg.deobf("curse.maven:farmersdelight-398521:${config.FARMERS_DELIGHT_FILE}")
+  implementation fg.deobf("curse.maven:flywheel-486392:${config.FLYWHEEL_FILE}")
+  implementation fg.deobf("curse.maven:mutil-351914:${config.MUTIL_FILE}")
+  implementation fg.deobf("curse.maven:tetra-289712:${config.TETRA_FILE}")
   implementation "com.google.code.gson:gson:2.8.0" // Minecraft already has this, but I'm declaring it just to declare that this project uses it.
   annotationProcessor "org.spongepowered:mixin:${config.MIXIN_VERSION}:processor"
 }

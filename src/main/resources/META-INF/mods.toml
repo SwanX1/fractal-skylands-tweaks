@@ -32,9 +32,23 @@ issueTrackerURL="https://github.com/SwanX1/fractal-skylands-tweaks/issues"
   ordering="NONE"
   side="BOTH"
 
-# [[dependencies.fractalskylandstweaks]]
-#   modId="tetra"
-#   mandatory=true
-#   versionRange="[3.20.0,)"
-#   ordering="NONE"
-#   side="BOTH"
+[[dependencies.fractalskylandstweaks]]
+  modId="tetra"
+  mandatory=true
+  versionRange="[3.20.0,)"
+  ordering="NONE"
+  side="BOTH"
+
+[[dependencies.fractalskylandstweaks]]
+  modId="create"
+  mandatory=true
+  versionRange="[v0.3.2,)"
+  ordering="NONE"
+  side="BOTH"
+
+[[dependencies.fractalskylandstweaks]]
+  modId="farmersdelight"
+  mandatory=true
+  versionRange="[1.16.5-0.6.0,)"
+  ordering="NONE"
+  side="BOTH"

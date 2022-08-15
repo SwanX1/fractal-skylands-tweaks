@@ -1,6 +1,7 @@
 // Copyright (c) 2022 Kārlis Čerņavskis, All Rights Reserved.
 package dev.cernavskis.fractalskylandstweaks.event;
 
+import dev.cernavskis.fractalskylandstweaks.data.FSTLootConditions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,6 +31,7 @@ public class ModEvents {
     event.enqueueWork(() -> {
       Registry.register(Registry.BIOME_SOURCE, new ResourceLocation(MOD_ID, "static_biome_provider"), StaticBiomeProvider.CODEC);
       Registry.register(Registry.CHUNK_GENERATOR, new ResourceLocation(MOD_ID, "island_chunk_generator"), IslandChunkGenerator.CODEC);
+      Registry.register(Registry.LOOT_CONDITION_TYPE, new ResourceLocation(MOD_ID, "tetra_tool_level"), FSTLootConditions.TETRA_TOOL_LEVEL);
     });
   }
 }

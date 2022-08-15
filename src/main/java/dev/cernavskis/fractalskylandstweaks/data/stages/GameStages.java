@@ -1,5 +1,5 @@
 // Copyright (c) 2022 Kārlis Čerņavskis, All Rights Reserved.
-package dev.cernavskis.fractalskylandstweaks.data;
+package dev.cernavskis.fractalskylandstweaks.data.stages;
 
 import java.io.IOException;
 import java.io.Reader;
