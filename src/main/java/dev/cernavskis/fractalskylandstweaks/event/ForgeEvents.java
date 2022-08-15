@@ -6,7 +6,6 @@ import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import dev.cernavskis.fractalskylandstweaks.FractalSkylandsTweaks;
 import dev.cernavskis.fractalskylandstweaks.command.Commands;
 import dev.cernavskis.fractalskylandstweaks.world.gen.SBConfiguredFeatures;
 import net.minecraft.util.math.BlockPos;
@@ -15,8 +14,6 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
 public class ForgeEvents {
   private static final Logger LOGGER = LogManager.getLogger();
@@ -37,21 +34,5 @@ public class ForgeEvents {
   @SubscribeEvent
   public void onRegisterCommands(RegisterCommandsEvent event) {
     Commands.register(event.getDispatcher());
-  }
-
-  @SubscribeEvent
-  public void onServerAboutToStart(FMLServerAboutToStartEvent event) {
-    FractalSkylandsTweaks.PLAYER_STAGES.unload();
-    FractalSkylandsTweaks.PLAYER_STAGES.setServer(event.getServer());
-  }
-
-  @SubscribeEvent
-  public void onServerStarting(FMLServerStartingEvent event) {
-    FractalSkylandsTweaks.PLAYER_STAGES.load();
-  }
-
-  @SubscribeEvent
-  public void onWorldSave(WorldEvent.Save event) {
-    FractalSkylandsTweaks.PLAYER_STAGES.save();
   }
 }

@@ -7,15 +7,13 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 
 public class SkyblockCommand implements ICommand {
-  private ICommand generateCommand = new GenerateCommand();
-  private ICommand getConfigCommand = new GetStructureConfigCommand();
-  private ICommand gameStagesCommand = new GameStagesCommand();
+  private final ICommand generateCommand = new GenerateCommand();
+  private final ICommand getConfigCommand = new GetStructureConfigCommand();
   @Override
   public LiteralArgumentBuilder<CommandSource> getCommand() {
     return Commands.literal("skyblock")
         .requires(source -> source.hasPermission(2))
         .then(generateCommand.getCommand())
-        .then(getConfigCommand.getCommand())
-        .then(gameStagesCommand.getCommand());
+        .then(getConfigCommand.getCommand());
   }
 }
