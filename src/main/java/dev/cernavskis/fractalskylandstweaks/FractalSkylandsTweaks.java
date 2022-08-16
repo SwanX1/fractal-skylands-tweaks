@@ -1,6 +1,10 @@
 // Copyright (c) 2022 Kārlis Čerņavskis, All Rights Reserved.
 package dev.cernavskis.fractalskylandstweaks;
 
+import com.simibubi.create.api.event.TileEntityBehaviourEvent;
+import com.simibubi.create.content.contraptions.components.millstone.MillstoneTileEntity;
+import dev.cernavskis.fractalskylandstweaks.tileentity.MillstoneBehaviour;
+import net.minecraftforge.eventbus.api.IEventBus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,8 +22,10 @@ public class FractalSkylandsTweaks {
   public FractalSkylandsTweaks() {
     LOGGER.info("Initializing Fractal Skylands Tweaks");
     LOGGER.info("Registering events...");
-    MinecraftForge.EVENT_BUS.register(new ForgeEvents());
+    IEventBus eventBus = MinecraftForge.EVENT_BUS;
+    eventBus.register(new ForgeEvents());
     FMLJavaModLoadingContext.get().getModEventBus().register(new ModEvents());
 
+    eventBus.addGenericListener(MillstoneTileEntity.class, (TileEntityBehaviourEvent<MillstoneTileEntity> event) -> event.attach(new MillstoneBehaviour(event.getTileEntity())));
   }
 }

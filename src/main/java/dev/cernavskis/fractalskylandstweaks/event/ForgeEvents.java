@@ -3,6 +3,8 @@ package dev.cernavskis.fractalskylandstweaks.event;
 
 import java.util.Random;
 
+import com.simibubi.create.api.event.TileEntityBehaviourEvent;
+import com.simibubi.create.content.contraptions.components.millstone.MillstoneTileEntity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
