@@ -9,8 +9,8 @@
   },
   "mixins": [
     "common.KineticTileEntityAccessor",
-    "common.MillstoneTileEntityMixin",
-    "common.MixinBlock"
+    "common.MixinBlock",
+    "common.MixinMillstoneTileEntity"
   ],
   "client": [
     "client.MixinCreateWorldScreen",

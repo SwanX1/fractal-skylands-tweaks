@@ -13,8 +13,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = MillstoneTileEntity.class, remap = false)
-public class MillstoneTileEntityMixin extends KineticTileEntity {
-    private MillstoneTileEntityMixin(TileEntityType<?> typeIn) {
+public class MixinMillstoneTileEntity extends KineticTileEntity {
+    private MixinMillstoneTileEntity(TileEntityType<?> typeIn) {
         super(typeIn);
     }
 
