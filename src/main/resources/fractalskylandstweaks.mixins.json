@@ -10,6 +10,7 @@
   "mixins": [
     "common.KineticTileEntityAccessor",
     "common.MixinBlock",
+    "common.MixinCauldronBlock",
     "common.MixinMillstoneTileEntity",
     "common.MixinShapedRecipe"
   ],
