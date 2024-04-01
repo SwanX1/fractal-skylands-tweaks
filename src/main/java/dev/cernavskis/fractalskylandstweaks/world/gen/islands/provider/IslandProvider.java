@@ -86,6 +86,11 @@ public class IslandProvider extends AbstractIslandProvider {
     return Collections.emptyList();
   }
 
+  // Used in IslandChunkGenerator to add the starting island
+  public void addIslandPlacement(Point<IslandConfiguration> startIslandPoint) {
+    this.generatedIslandPositions.add(startIslandPoint);
+  }
+
   protected boolean shouldExpandPlacementGeneration(ChunkPos pos) {
     return !WorldgenUtil.isWithinBoundary(pos, (int) (this.currentGenerationSize - largestConfiguredRadius));
   }

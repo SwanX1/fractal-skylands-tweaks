@@ -3,8 +3,8 @@ package dev.cernavskis.fractalskylandstweaks.world.gen.islands;
 
 import java.util.function.BiFunction;
 
-import dev.cernavskis.fractalskylandstweaks.util.OpenSimplex2F;
 import dev.cernavskis.fractalskylandstweaks.util.WorldgenUtil;
+import dev.cernavskis.fractalskylandstweaks.util.math.OpenSimplex2F;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.util.RandomSource;

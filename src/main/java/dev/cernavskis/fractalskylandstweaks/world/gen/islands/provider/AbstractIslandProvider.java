@@ -3,7 +3,7 @@ package dev.cernavskis.fractalskylandstweaks.world.gen.islands.provider;
 
 import java.util.List;
 
-import dev.cernavskis.fractalskylandstweaks.util.OpenSimplex2F;
+import dev.cernavskis.fractalskylandstweaks.util.math.OpenSimplex2F;
 import dev.cernavskis.fractalskylandstweaks.util.math.poisson.Point;
 import dev.cernavskis.fractalskylandstweaks.world.gen.islands.Island;
 import dev.cernavskis.fractalskylandstweaks.world.gen.islands.IslandConfiguration;

@@ -4,8 +4,8 @@ package dev.cernavskis.fractalskylandstweaks.world.gen.islands.custom;
 import java.util.LinkedList;
 import java.util.List;
 
-import dev.cernavskis.fractalskylandstweaks.util.OpenSimplex2F;
 import dev.cernavskis.fractalskylandstweaks.util.WorldgenUtil;
+import dev.cernavskis.fractalskylandstweaks.util.math.OpenSimplex2F;
 import dev.cernavskis.fractalskylandstweaks.util.math.Vector2i;
 import dev.cernavskis.fractalskylandstweaks.world.gen.islands.Island;
 import dev.cernavskis.fractalskylandstweaks.world.gen.islands.IslandConfiguration;

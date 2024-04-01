@@ -56,6 +56,7 @@ public class IslandChunkGenerator extends SimpleChunkGenerator {
       );
 
       this.islandProvider.addIsland(startIslandPoint, world.getSeed());
+      this.islandProvider.addIslandPlacement(startIslandPoint);
     }
 
     this.islandProvider.ensureIslandPlacements(world.getSeed(), chunkAccess);
