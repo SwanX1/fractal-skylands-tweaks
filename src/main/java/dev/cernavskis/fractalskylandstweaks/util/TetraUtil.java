@@ -1,21 +1,23 @@
+// Copyright (c) 2024 Kārlis Čerņavskis, All Rights Reserved unless otherwise explicitly stated.
 package dev.cernavskis.fractalskylandstweaks.util;
-
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import se.mickelus.tetra.items.modular.impl.ModularDoubleHeadedItem;
-import se.mickelus.tetra.items.modular.impl.ModularSingleHeadedItem;
 
 import javax.annotation.CheckForNull;
 
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import se.mickelus.tetra.items.modular.impl.ModularDoubleHeadedItem;
+import se.mickelus.tetra.items.modular.impl.ModularSingleHeadedItem;
+
 public final class TetraUtil {
-  private TetraUtil() {} // Uninstantiable
+  private TetraUtil() {
+  } // Uninstantiable
 
   @CheckForNull
   public static Item getVanillaTool(ItemStack stack) {
     Item stackItem = stack.getItem();
-    CompoundNBT tag = stack.getTag();
+    CompoundTag tag = stack.getTag();
     if (stackItem instanceof ModularSingleHeadedItem) {
       if (tag.getString("single/handle").equals("single/basic_handle") &&
           tag.getString("single/basic_handle_material").equals("basic_handle/stick") &&

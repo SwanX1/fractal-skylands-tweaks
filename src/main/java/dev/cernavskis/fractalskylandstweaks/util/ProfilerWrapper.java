@@ -1,16 +1,17 @@
-// Copyright (c) 2022 Kārlis Čerņavskis, All Rights Reserved.
+// Copyright (c) 2024 Kārlis Čerņavskis, All Rights Reserved unless otherwise explicitly stated.
 package dev.cernavskis.fractalskylandstweaks.util;
 
 import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.profiler.IProfiler;
+import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.util.profiling.metrics.MetricCategory;
 
-public class ProfilerWrapper implements IProfiler {
-  private IProfiler profiler;
-  
-  public ProfilerWrapper(@Nullable IProfiler profiler) {
+public class ProfilerWrapper implements ProfilerFiller {
+  private ProfilerFiller profiler;
+
+  public ProfilerWrapper(@Nullable ProfilerFiller profiler) {
     this.profiler = profiler;
   }
 
@@ -18,10 +19,10 @@ public class ProfilerWrapper implements IProfiler {
     return this.profiler != null;
   }
 
-  public void setProfiler(@Nullable IProfiler profiler) {
+  public void setProfiler(@Nullable ProfilerFiller profiler) {
     this.profiler = profiler;
   }
-  
+
   @Override
   public void startTick() {
     if (this.hasProfiler()) {
@@ -72,6 +73,13 @@ public class ProfilerWrapper implements IProfiler {
   }
 
   @Override
+  public void markForCharting(MetricCategory p_145959_) {
+    if (this.hasProfiler()) {
+      this.profiler.markForCharting(p_145959_);
+    }
+  }
+
+  @Override
   public void incrementCounter(String p_230035_1_) {
     if (this.hasProfiler()) {
       this.profiler.incrementCounter(p_230035_1_);
@@ -79,9 +87,23 @@ public class ProfilerWrapper implements IProfiler {
   }
 
   @Override
+  public void incrementCounter(String p_185258_, int p_185259_) {
+    if (this.hasProfiler()) {
+      this.profiler.incrementCounter(p_185258_, p_185259_);
+    }
+  }
+
+  @Override
   public void incrementCounter(Supplier<String> p_230036_1_) {
     if (this.hasProfiler()) {
       this.profiler.incrementCounter(p_230036_1_);
+    }
+  }
+
+  @Override
+  public void incrementCounter(Supplier<String> p_185260_, int p_185261_) {
+    if (this.hasProfiler()) {
+      this.profiler.incrementCounter(p_185260_, p_185261_);
     }
   }
 }

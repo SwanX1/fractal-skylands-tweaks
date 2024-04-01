@@ -6,7 +6,7 @@ buildscript {
   }
 
   dependencies {
-    classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+    classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.0.+', changing: true
     classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
   }
 }
@@ -22,48 +22,36 @@ group = "${config.GROUP}.${config.ARTIFACT}"
 archivesBaseName = "${config.ARCHIVES_BASE_NAME}-${config.MINECRAFT_VERSION}"
 
 compileJava.options.encoding = "UTF-8"
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
   mappings channel: config.MAPPINGS_CHANNEL, version: config.MAPPINGS_VERSION
-
-  // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-
+  copyIdeResources = true
   runs {
-    client {
+    configureEach {
       workingDirectory project.file('run')
+
       arg "-mixin.config=${config.ARTIFACT}.mixins.json"
-      property 'forge.logging.markers', 'REGISTRIES'
+      property 'forge.logging.markers', ''
       property 'forge.logging.console.level', 'debug'
+      property 'forge.enabledGameTestNamespaces', config.MOD_ID
+
       mods {
-        fractalskylandstweaks {
+        "${config.MOD_ID}" {
           source sourceSets.main
         }
       }
     }
 
+    client {}
+
     server {
-      workingDirectory project.file('run')
-      arg "-mixin.config=${config.ARTIFACT}.mixins.json"
-      property 'forge.logging.markers', 'REGISTRIES'
-      property 'forge.logging.console.level', 'debug'
-      mods {
-        fractalskylandstweaks {
-          source sourceSets.main
-        }
-      }
+      args '--nogui'
     }
 
     data {
-      workingDirectory project.file('run')
-      property 'forge.logging.markers', 'REGISTRIES'
-      property 'forge.logging.console.level', 'debug'
+      workingDirectory project.file('run-data')
       args '--mod', config.MOD_ID, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-      mods {
-        fractalskylandstweaks {
-          source sourceSets.main
-        }
-      }
     }
   }
 }
@@ -72,22 +60,56 @@ minecraft {
 
 repositories {
   maven {
-    url "https://www.cursemaven.com"
+    url 'https://www.cursemaven.com'
     content {
-      includeGroup "curse.maven"
+      includeGroup 'curse.maven'
     }
   }
+  maven {
+    url 'https://maven.theillusivec4.top/'
+    content {
+      includeGroup 'top.theillusivec4.curios'
+    }
+  }
+  maven {
+    url 'https://maven.blamejared.com/'
+    content {
+      includeGroup 'mezz.jei'
+    }
+  }
+  maven {
+    url 'https://modmaven.dev'
+    content {
+      includeGroup 'mezz.jei'
+    }
+  }
+
+    maven { url "https://maven.tterrag.com/" }
 }
 
 dependencies {
   minecraft "net.minecraftforge:forge:${config.MINECRAFT_VERSION}-${config.FORGE_VERSION}"
-  implementation fg.deobf("curse.maven:create-328085:${config.CREATE_FILE}")
+  implementation fg.deobf("com.simibubi.create:create-${config.MINECRAFT_VERSION}:${config.CREATE_VERSION}:slim") { transitive = false }
+  implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${config.MINECRAFT_VERSION}:${config.FLYWHEEL_VERSION}")
+  implementation fg.deobf("com.tterrag.registrate:Registrate:${config.REGISTRATE_VERSION}")
   implementation fg.deobf("curse.maven:farmersdelight-398521:${config.FARMERS_DELIGHT_FILE}")
-  implementation fg.deobf("curse.maven:flywheel-486392:${config.FLYWHEEL_FILE}")
   implementation fg.deobf("curse.maven:mutil-351914:${config.MUTIL_FILE}")
   implementation fg.deobf("curse.maven:tetra-289712:${config.TETRA_FILE}")
-  implementation "com.google.code.gson:gson:2.8.0" // Minecraft already has this, but I'm declaring it just to declare that this project uses it.
+
+  runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${config.CURIOS_VERSION}")
+  compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${config.CURIOS_VERSION}:api")
+  compileOnly fg.deobf("mezz.jei:jei-${config.MINECRAFT_VERSION}-forge-api:${config.JEI_VERSION}")
+  runtimeOnly fg.deobf("mezz.jei:jei-${config.MINECRAFT_VERSION}-forge:${config.JEI_VERSION}")
+
+  // Dev only
+  implementation fg.deobf("curse.maven:not-enough-crashes-forge-442354:4684047")
+  implementation fg.deobf("curse.maven:spark-361579:4738952")
+
   annotationProcessor "org.spongepowered:mixin:${config.MIXIN_VERSION}:processor"
+  compileOnly annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.5");
+  implementation jarJar("io.github.llamalad7:mixinextras-forge:0.3.5") {
+    jarJar.ranged(it, "[0.3.5,)")
+  }
 }
 
 jar {

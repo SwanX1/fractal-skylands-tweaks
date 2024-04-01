@@ -3,21 +3,18 @@
   "minVersion": "0.8",
   "package": "dev.cernavskis.fractalskylandstweaks.mixin",
   "refmap": "fractalskylandstweaks.refmap.json",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "injectors": {
     "defaultRequire": 1
   },
   "mixins": [
-    "common.KineticTileEntityAccessor",
+    "common.KineticBlockEntityAccessor",
     "common.MixinBlock",
-    "common.MixinCauldronBlock",
-    "common.MixinMillstoneTileEntity",
+    "common.MixinLayeredCauldronBlock",
     "common.MixinShapedRecipe"
   ],
   "client": [
     "client.MixinCreateWorldScreen",
-    "client.MixinMainMenuScreen",
-    "client.MixinServerWorldInfo",
-    "client.MixinWorldOptionsScreen"
+    "client.MixinWorldOpenFlows"
   ]
 }

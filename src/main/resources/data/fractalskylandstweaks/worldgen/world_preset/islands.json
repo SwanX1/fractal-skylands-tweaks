@@ -1,0 +1,16 @@
+{
+  "dimensions": {
+    "minecraft:overworld": {
+      "type": "minecraft:overworld",
+      "generator": {
+        "type": "fractalskylandstweaks:island",
+        "max_island_distance": 100,
+        "poisson_generation_step": 256,
+        "biome_source": {
+          "type": "minecraft:fixed",
+          "biome": "minecraft:the_void"
+        }
+      }
+    }
+  }
+}
