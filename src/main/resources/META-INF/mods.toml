@@ -52,3 +52,10 @@ issueTrackerURL="https://github.com/SwanX1/fractal-skylands-tweaks/issues"
   versionRange="[1.16.5-0.6.0,)"
   ordering="NONE"
   side="BOTH"
+
+[[dependencies.fractalskylandstweaks]]
+  modId="ftbquests"
+  mandatory=true
+  versionRange="[2001.3.5,)"
+  ordering="NONE"
+  side="BOTH"

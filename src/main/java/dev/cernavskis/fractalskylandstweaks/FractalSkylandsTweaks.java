@@ -4,13 +4,9 @@ package dev.cernavskis.fractalskylandstweaks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.simibubi.create.api.event.BlockEntityBehaviourEvent;
-import com.simibubi.create.content.kinetics.millstone.MillstoneBlockEntity;
-
-import dev.cernavskis.fractalskylandstweaks.core.FSTChunkGenerators;
-import dev.cernavskis.fractalskylandstweaks.core.FSTLootConditions;
+import dev.cernavskis.fractalskylandstweaks.core.event.EventListener;
 import dev.cernavskis.fractalskylandstweaks.core.event.ForgeEvents;
-import dev.cernavskis.fractalskylandstweaks.tileentity.MillstoneBehaviour;
+import dev.cernavskis.fractalskylandstweaks.core.event.ModEvents;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -18,23 +14,29 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(FractalSkylandsTweaks.MOD_ID)
 public class FractalSkylandsTweaks {
-  public static final Logger LOGGER = LogManager.getLogger();
+  private static final Logger LOGGER = LogManager.getLogger();
   public static final String MOD_ID = "fractalskylandstweaks";
 
   public FractalSkylandsTweaks() {
-    System.out.println("Initializing Fractal Skylands Tweaks");
-    System.out.println("Registering events...");
-    IEventBus eventBus = MinecraftForge.EVENT_BUS;
-    eventBus.register(new ForgeEvents());
+    FractalSkylandsTweaks.getLogger().info("Initializing Fractal Skylands Tweaks");
+    
+    IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
+    EventListener forgeEvents = new ForgeEvents();
+    forgeEvents.onModInitialization(forgeEventBus);
 
     IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-    FSTChunkGenerators.registerToBus(modEventBus);
-    FSTLootConditions.registerToBus(modEventBus);
+    EventListener modEvents = new ModEvents();
+    modEvents.onModInitialization(modEventBus);
+  }
 
-    eventBus.addGenericListener(
-      MillstoneBlockEntity.class,
-      (BlockEntityBehaviourEvent<MillstoneBlockEntity> event) ->
-        event.attach(new MillstoneBehaviour(event.getBlockEntity()))
-    );
+  public static Logger getLogger() {
+    // Check if the calling class is in the same package as this class
+    StackTraceElement callingClass = Thread.currentThread().getStackTrace()[2];
+    String ourPackage = FractalSkylandsTweaks.class.getPackageName();
+
+    if (!callingClass.getClassName().startsWith(ourPackage)) {
+      throw new SecurityException("A class outside of the " + ourPackage + " package tried to access the logger!");
+    }
+    return FractalSkylandsTweaks.LOGGER;
   }
 }

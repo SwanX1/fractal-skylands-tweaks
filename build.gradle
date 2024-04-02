@@ -84,7 +84,7 @@ repositories {
     }
   }
 
-    maven { url "https://maven.tterrag.com/" }
+  maven { url "https://maven.tterrag.com/" }
 }
 
 dependencies {
@@ -95,6 +95,10 @@ dependencies {
   implementation fg.deobf("curse.maven:farmersdelight-398521:${config.FARMERS_DELIGHT_FILE}")
   implementation fg.deobf("curse.maven:mutil-351914:${config.MUTIL_FILE}")
   implementation fg.deobf("curse.maven:tetra-289712:${config.TETRA_FILE}")
+  implementation fg.deobf("curse.maven:ftb-quests-289412:${config.FTB_QUESTS_FILE}")
+  implementation fg.deobf("curse.maven:ftb-library-404465:${config.FTB_LIBRARY_FILE}")
+  implementation fg.deobf("curse.maven:ftb-teams-404468:${config.FTB_TEAMS_FILE}")
+  implementation fg.deobf("curse.maven:architectury-419699:${config.ARCHITECTURY_FILE}")
 
   runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${config.CURIOS_VERSION}")
   compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${config.CURIOS_VERSION}:api")

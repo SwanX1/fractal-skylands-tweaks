@@ -99,7 +99,7 @@ public class IslandProvider extends AbstractIslandProvider {
     IslandProvider.ensureLargestConfiguredRadius();
 
     while (shouldExpandPlacementGeneration(chunkAccess.getPos())) {
-      FractalSkylandsTweaks.LOGGER.debug(
+      FractalSkylandsTweaks.getLogger().debug(
         String.format(
           "Expanding island placement generation from %d to %d because chunk %s (block %d,%d) is outside the boundary of %d",
           this.currentGenerationSize,
@@ -119,7 +119,7 @@ public class IslandProvider extends AbstractIslandProvider {
       getIslands(seed);
       long end = System.currentTimeMillis();
 
-      FractalSkylandsTweaks.LOGGER.debug("Expansion took " + (end - start) + "ms");
+      FractalSkylandsTweaks.getLogger().debug("Expansion took " + (end - start) + "ms");
     }
   }
 
