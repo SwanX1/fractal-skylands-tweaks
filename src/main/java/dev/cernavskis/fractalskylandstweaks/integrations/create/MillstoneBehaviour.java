@@ -5,7 +5,7 @@ import com.simibubi.create.content.kinetics.millstone.MillstoneBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BehaviourType;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 
-import dev.cernavskis.fractalskylandstweaks.mixin.common.KineticBlockEntityAccessor;
+import dev.cernavskis.fractalskylandstweaks.mixin.common.AccessorKineticBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -25,7 +25,7 @@ public class MillstoneBehaviour extends BlockEntityBehaviour {
     @Override
     public void tick() {
         MillstoneBlockEntity millstone = (MillstoneBlockEntity) this.blockEntity;
-        ((KineticBlockEntityAccessor) millstone).setValidationCountdown(Integer.MAX_VALUE);
+        ((AccessorKineticBlockEntity) millstone).setValidationCountdown(Integer.MAX_VALUE);
         super.tick();
         millstone.setSpeed(24.0F);
 

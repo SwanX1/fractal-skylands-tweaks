@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 
 @Mixin(value = KineticBlockEntity.class, remap = false)
-public interface KineticBlockEntityAccessor {
+public interface AccessorKineticBlockEntity {
     @Accessor(value = "validationCountdown")
     int getValidationCountdown();
 

@@ -8,7 +8,9 @@
     "defaultRequire": 1
   },
   "mixins": [
-    "common.KineticBlockEntityAccessor",
+    "common.AccessorKineticBlockEntity",
+    "common.AccessorServerGamePacketListenerImpl",
+    "common.AccessorServerPlayer",
     "common.MixinBlock",
     "common.MixinLayeredCauldronBlock",
     "common.MixinShapedRecipe"
