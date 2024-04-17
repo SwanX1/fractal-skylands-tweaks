@@ -6,11 +6,9 @@ import org.apache.logging.log4j.Logger;
 
 import dev.cernavskis.fractalskylandstweaks.core.event.EventListener;
 import dev.cernavskis.fractalskylandstweaks.core.event.ForgeEvents;
-import dev.cernavskis.fractalskylandstweaks.core.event.ModEvents;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(FractalSkylandsTweaks.MOD_ID)
 public class FractalSkylandsTweaks {
@@ -23,10 +21,6 @@ public class FractalSkylandsTweaks {
     IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
     EventListener forgeEvents = new ForgeEvents();
     forgeEvents.onModInitialization(forgeEventBus);
-
-    IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-    EventListener modEvents = new ModEvents();
-    modEvents.onModInitialization(modEventBus);
   }
 
   public static Logger getLogger() {
