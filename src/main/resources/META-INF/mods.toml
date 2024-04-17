@@ -6,7 +6,7 @@ issueTrackerURL="https://github.com/SwanX1/fractal-skylands-tweaks/issues"
 [[mods]]
   modId="fractalskylandstweaks"
   version="${file.jarVersion}"
-  displayName="Fractal Skylands Tweaks"
+  displayName="Fractal Skylands Tweaks: Unfractaled"
   # See: https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
   updateJSONURL="https://cernavskis.dev/api/fractalskylandstweaks.json"
   displayURL="https://github.com/SwanX1/fractal-skylands-tweaks"

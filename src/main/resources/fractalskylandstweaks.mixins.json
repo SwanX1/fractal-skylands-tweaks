@@ -9,14 +9,10 @@
   },
   "mixins": [
     "common.AccessorKineticBlockEntity",
-    "common.AccessorServerGamePacketListenerImpl",
-    "common.AccessorServerPlayer",
     "common.MixinBlock",
     "common.MixinLayeredCauldronBlock",
     "common.MixinShapedRecipe"
   ],
   "client": [
-    "client.MixinCreateWorldScreen",
-    "client.MixinWorldOpenFlows"
   ]
 }
