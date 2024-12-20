@@ -9,16 +9,23 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 
 public class FSTLootConditions {
-private static final DeferredRegister<LootItemConditionType> REGISTRY = DeferredRegister.create(Registries.LOOT_CONDITION_TYPE, FractalSkylandsTweaks.MOD_ID);
 
-public static final LootItemConditionType TETRA_TOOL_LEVEL = register("tetra_tool_level", new LootItemConditionType(new TetraToolLevelItemCondition.TSerializer()));
+    private static final DeferredRegister<LootItemConditionType> REGISTRY = DeferredRegister.create(
+        Registries.LOOT_CONDITION_TYPE,
+        FractalSkylandsTweaks.MOD_ID
+    );
 
-  private static LootItemConditionType register(String name, LootItemConditionType conditionType) {
-    REGISTRY.register(name, () -> conditionType);
-    return conditionType;
-  }
+    public static final LootItemConditionType TETRA_TOOL_LEVEL = register(
+        "tetra_tool_level",
+        new LootItemConditionType(new TetraToolLevelItemCondition.TSerializer())
+    );
 
-  public static void registerToBus(IEventBus bus) {
-    REGISTRY.register(bus);
-  }
+    private static LootItemConditionType register(String name, LootItemConditionType conditionType) {
+        REGISTRY.register(name, () -> conditionType);
+        return conditionType;
+    }
+
+    public static void registerToBus(IEventBus bus) {
+        REGISTRY.register(bus);
+    }
 }

@@ -2,7 +2,6 @@
 package dev.cernavskis.fractalskylandstweaks.core;
 
 import com.mojang.serialization.Codec;
-
 import dev.cernavskis.fractalskylandstweaks.FractalSkylandsTweaks;
 import dev.cernavskis.fractalskylandstweaks.world.gen.chunkgenerators.IslandChunkGenerator;
 import net.minecraft.core.registries.Registries;
@@ -12,15 +11,19 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 public class FSTChunkGenerators {
-  private static final DeferredRegister<Codec<? extends ChunkGenerator>> REGISTRY = DeferredRegister.create(Registries.CHUNK_GENERATOR, FractalSkylandsTweaks.MOD_ID);
 
-  public static final RegistryObject<Codec<? extends ChunkGenerator>> ISLAND = register("island", IslandChunkGenerator.CODEC);
+    private static final DeferredRegister<Codec<? extends ChunkGenerator>> REGISTRY = DeferredRegister.create(
+        Registries.CHUNK_GENERATOR,
+        FractalSkylandsTweaks.MOD_ID
+    );
 
-  private static RegistryObject<Codec<? extends ChunkGenerator>> register(String name, Codec<? extends ChunkGenerator> codec) {
-    return REGISTRY.register(name, () -> codec);
-  }
+    public static final RegistryObject<Codec<? extends ChunkGenerator>> ISLAND = register("island", IslandChunkGenerator.CODEC);
 
-  public static void registerToBus(IEventBus bus) {
-    REGISTRY.register(bus);
-  }
+    private static RegistryObject<Codec<? extends ChunkGenerator>> register(String name, Codec<? extends ChunkGenerator> codec) {
+        return REGISTRY.register(name, () -> codec);
+    }
+
+    public static void registerToBus(IEventBus bus) {
+        REGISTRY.register(bus);
+    }
 }

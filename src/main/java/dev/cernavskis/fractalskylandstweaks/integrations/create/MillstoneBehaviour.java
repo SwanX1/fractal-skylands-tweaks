@@ -4,7 +4,6 @@ package dev.cernavskis.fractalskylandstweaks.integrations.create;
 import com.simibubi.create.content.kinetics.millstone.MillstoneBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BehaviourType;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
-
 import dev.cernavskis.fractalskylandstweaks.mixin.common.AccessorKineticBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
@@ -12,6 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class MillstoneBehaviour extends BlockEntityBehaviour {
+
     public MillstoneBehaviour(MillstoneBlockEntity tileEntity) {
         super(tileEntity);
     }
@@ -36,16 +36,15 @@ public class MillstoneBehaviour extends BlockEntityBehaviour {
                 if (stack.isEmpty()) continue;
                 Level level = this.getWorld();
                 Vec3 pos = millstone.getBlockPos().getCenter();
-    
+
                 double x = pos.x;
                 double y = pos.y + 0.5;
                 double z = pos.z;
-                
+
                 ItemEntity itemEntity = new ItemEntity(level, x, y, z, stack.copy());
                 itemEntity.setDeltaMovement(0, 0.23, 0);
                 level.addFreshEntity(itemEntity);
             }
         }
-
     }
 }

@@ -5,5 +5,5 @@ import net.minecraft.core.BlockPos;
 
 @FunctionalInterface
 public interface IslandConstructor {
-  Island create(IslandConfiguration config, BlockPos position, long seed);
+    Island create(IslandConfiguration config, BlockPos position, long seed);
 }

@@ -6,18 +6,17 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 
 public final class RegistryUtil {
-  private static MinecraftServer SERVER;
 
-  private RegistryUtil() {
-  } // Uninstantiable
+    private static MinecraftServer SERVER;
 
-  // SERVER ONLY!!!
-  public static <T> Registry<T> getRegistry(ResourceKey<Registry<T>> key) {
-    return SERVER.registryAccess().registry(key)
-        .orElseThrow(() -> new IllegalStateException("Missing registry: " + key.location()));
-  }
+    private RegistryUtil() {} // Uninstantiable
 
-  public static void setServer(MinecraftServer server) {
-    RegistryUtil.SERVER = server;
-  }
+    // SERVER ONLY!!!
+    public static <T> Registry<T> getRegistry(ResourceKey<Registry<T>> key) {
+        return SERVER.registryAccess().registry(key).orElseThrow(() -> new IllegalStateException("Missing registry: " + key.location()));
+    }
+
+    public static void setServer(MinecraftServer server) {
+        RegistryUtil.SERVER = server;
+    }
 }
